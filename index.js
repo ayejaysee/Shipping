@@ -1,5 +1,5 @@
 import { registerRootComponent } from "expo";
-import InitialSetup from "../Shipping/components/InitialSetup";
+import InitialSetup from "./components/Preferences";
 import Estimate from "../Shipping/components/Estimate";
 
 import App from "./App";

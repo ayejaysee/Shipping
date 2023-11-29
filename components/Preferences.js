@@ -1,11 +1,16 @@
-// import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { Dropdown } from "react-native-element-dropdown";
 import { useNavigation } from "@react-navigation/native";
 
-const InitialSetup = ({ navigation }) => {
+const Preferences = ({ navigation }) => {
   const [selectedCarrier, setSelectedCarrier] = useState("");
   const [selectedUnit, setSelectedUnit] = useState("");
   const [selectedClass, setSelectedClass] = useState("");
@@ -41,29 +46,7 @@ const InitialSetup = ({ navigation }) => {
       <Text style={{ fontSize: 30, marginTop: 70 }}>
         Enter Your Preferences
       </Text>
-      <View style={{ marginTop: 40 }}>
-        {/* <Dropdown
-          style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
-          placeholderStyle={styles.placeholderStyle}
-          selectedTextStyle={styles.selectedTextStyle}
-          inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={styles.iconStyle}
-          data={carriers}
-          search
-          maxHeight={300}
-          labelField="label"
-          valueField="value"
-          placeholder={!isFocus ? "Select carrier" : "..."}
-          searchPlaceholder="Search..."
-          value={selectedCarrier}
-          //   onFocus={() => setIsFocus(true)}
-          //   onBlur={() => setIsFocus(false)}
-          onChange={(item) => {
-            setSelectedCarrier(item.value);
-            // setIsFocus(false);
-          }}
-        /> */}
-      </View>
+      <View style={{ marginTop: 40 }}></View>
       <View style={{ marginTop: 30 }}>
         <Dropdown
           style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
@@ -79,11 +62,8 @@ const InitialSetup = ({ navigation }) => {
           placeholder={!isFocus ? "Select unit" : "..."}
           searchPlaceholder="Search..."
           value={selectedUnit}
-          //   onFocus={() => setIsFocus(true)}
-          //   onBlur={() => setIsFocus(false)}
           onChange={(item) => {
             setSelectedUnit(item.value);
-            // setIsFocus(false);
           }}
         />
       </View>
@@ -112,11 +92,8 @@ const InitialSetup = ({ navigation }) => {
           placeholder={!isFocus ? "Select priority" : "..."}
           searchPlaceholder="Search..."
           value={selectedClass}
-          //   onFocus={() => setIsFocus(true)}
-          //   onBlur={() => setIsFocus(false)}
           onChange={(item) => {
             setSelectedClass(item.value);
-            // setIsFocus(false);
           }}
         />
       </View>
@@ -134,14 +111,12 @@ const InitialSetup = ({ navigation }) => {
         keyboardType="numeric" // Specify numeric keyboard
         placeholder="Enter zipcode destination: "
       />
-      <View style={styles.buttonContainer}>
-        <Button
-          //   backgroundColor="green"
-          title="Generate Estimate"
-          onPress={() => navigation.navigate("Estimate")}
-        />
-      </View>
-      {/* <StatusBar style="auto" /> */}
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Estimate")}
+        style={styles.button}
+      >
+        <Text style={styles.buttonText}>Generate Estimates</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -197,12 +172,14 @@ const styles = StyleSheet.create({
     height: 40,
     fontSize: 16,
   },
-  buttonContainer: {
-    position: "absolute",
-    bottom: 40, // 20 units from the bottom
-    width: "100%",
-    padding: 40,
+  button: {
+    backgroundColor: "white",
+    padding: 10,
+    borderRadius: 5,
+    marginTop: "30%",
+    borderWidth: 2, // Border width
+    borderColor: "blue", // Border color
   },
 });
 
-export default InitialSetup;
+export default Preferences;
